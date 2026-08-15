@@ -1,17 +1,34 @@
-# contact_management_app
+# Contact Management App
 
-A new Flutter project.
+A modern and scalable **Contact Management Application** built with **Flutter** and **Dart**, following the **MVVM (Model–View–ViewModel)** architecture.
 
-## Getting Started
+The application is designed to provide a clean and intuitive experience for managing personal and professional contacts, with a structure that is ready for future API and database integration.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- Contact list management
+- Search contacts by name, email, or phone number
+- Add new contacts
+- View contact details
+- Edit existing contacts
+- Delete contacts
+- Profile image support
+- Clean and responsive user interface
+- Modern contact list design
+- Smooth navigation
+- Scalable MVVM architecture
+- API-ready project structure
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Tech Stack
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Flutter** — Cross-platform UI framework
+- **Dart** — Programming language
+- **MVVM** — Application architecture
+- **GoRouter** — Navigation and route management
+- **Dio** — HTTP client for API communication
+- **Provider / ChangeNotifier** — State management
+- **REST API** — Backend integration
+
+## Architecture
+
+The project follows the MVVM architecture to keep UI, business logic, and data management separated.
