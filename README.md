@@ -32,3 +32,7 @@ The application is designed to provide a clean and intuitive experience for mana
 ## Architecture
 
 The project follows the MVVM architecture to keep UI, business logic, and data management separated.
+
+## Clone the repository:
+
+git clone https://github.com/your-username/contact-management-app.git
