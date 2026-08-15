@@ -1,4 +1,4 @@
-import 'package:contact_management_app/views/contact_page.dart';
+import 'package:contact_management_app/features/my_contact/contact_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {

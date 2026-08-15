@@ -6,8 +6,11 @@ class AppColors {
   static const Color primaryLight = Color(0xFF6163D2);
   static const Color primaryDark = Color(0xFF2C287A);
 
-   // App BAr
+  // App BAr
   static const Color appbar = Color(0xFF413ED1);
+
+  //Searchbar
+  static const Color searchBar = Color(0xFFE0E0E0);
 
   // Background
   static const Color background = Color(0xFFFDFDFD);
