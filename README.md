@@ -25,9 +25,6 @@ The application is designed to provide a clean and intuitive experience for mana
 - **Dart** — Programming language
 - **MVVM** — Application architecture
 - **GoRouter** — Navigation and route management
-- **Dio** — HTTP client for API communication
-- **Provider / ChangeNotifier** — State management
-- **REST API** — Backend integration
 
 ## Architecture
 
