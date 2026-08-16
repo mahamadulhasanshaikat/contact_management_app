@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import '../../app/routes/app_routes.dart';
 import '../../app/theme/app_colors.dart';
-import '../../core/constant/custom_drawer.dart';
+import '../drawer/custom_drawer.dart';
 import '../../core/constant/custom_search_bar.dart';
 import 'widgets/user_list.dart';
 
@@ -23,6 +25,7 @@ class _MyContactPageState extends State<MyContactPage> {
       appBar: AppBar(
         title: Text("My Contacts", style: TextStyle(color: Colors.white)),
         backgroundColor: AppColors.appbar,
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
             icon: Icon(Icons.search_outlined),
@@ -49,15 +52,13 @@ class _MyContactPageState extends State<MyContactPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+         context.push(AppRoutes.addContact);
+        },
         backgroundColor: AppColors.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 6,
-        child: const Icon(
-          Icons.person_add_alt_1,
-          color: Colors.white,
-          size: 25,
-        ),
+        child: Icon(Icons.person_add_alt_1, color: Colors.white, size: 25),
       ),
     );
   }

@@ -33,10 +33,7 @@ class _ModernDrawerState extends State<ModernDrawer>
       end: Offset.zero,
     ).animate(curvedAnimation);
 
-    _fadeAnimation = Tween<double>(
-      begin: 0,
-      end: 1,
-    ).animate(curvedAnimation);
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(curvedAnimation);
 
     _animationController.forward();
   }
@@ -59,20 +56,18 @@ class _ModernDrawerState extends State<ModernDrawer>
         child: DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                AppColors.appbar,
-                const Color(0xFFFF8A80),
-              ],
+              colors: [AppColors.appbar, Color(0xFFFF8A80)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
           child: Column(
             children: [
+              //header
               _buildHeader(),
-              Expanded(
-                child: _buildMenuContainer(),
-              ),
+
+              //Items
+              Expanded(child: _buildMenuContainer()),
             ],
           ),
         ),
@@ -85,7 +80,7 @@ class _ModernDrawerState extends State<ModernDrawer>
       height: 235,
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(24, 40, 20, 24),
+        padding: EdgeInsets.fromLTRB(24, 40, 20, 24),
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Align(
@@ -94,21 +89,16 @@ class _ModernDrawerState extends State<ModernDrawer>
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 58,
-                  height: 58,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.18),
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: const Icon(
+                Padding(
+                  padding: EdgeInsets.only(left: 15),
+                  child: Icon(
                     Icons.groups_2_outlined,
                     color: Colors.white,
-                    size: 32,
+                    size: 50,
                   ),
                 ),
-                const SizedBox(height: 18),
-                const Text(
+                SizedBox(height: 18),
+                Text(
                   'My Contacts',
                   style: TextStyle(
                     color: Colors.white,
@@ -117,7 +107,7 @@ class _ModernDrawerState extends State<ModernDrawer>
                     height: 1.2,
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: 6),
                 Text(
                   'Manage your contacts easily',
                   style: TextStyle(
@@ -137,7 +127,7 @@ class _ModernDrawerState extends State<ModernDrawer>
   Widget _buildMenuContainer() {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -145,7 +135,7 @@ class _ModernDrawerState extends State<ModernDrawer>
         ),
       ),
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(10, 18, 10, 20),
+        padding: EdgeInsets.fromLTRB(10, 18, 10, 20),
         children: [
           _buildAnimatedItem(
             child: _buildDrawerItem(
@@ -172,16 +162,9 @@ class _ModernDrawerState extends State<ModernDrawer>
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 10,
-            ),
-            child: Divider(
-              height: 1,
-              thickness: 1,
-              color: Color(0xFFE5E5EA),
-            ),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Divider(height: 1, thickness: 1, color: Color(0xFFE5E5EA)),
           ),
 
           _buildAnimatedItem(
@@ -204,8 +187,8 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.logout_rounded,
               title: 'Logout',
-              iconColor: const Color(0xFFF84D46),
-              textColor: const Color(0xFFF84D46),
+              iconColor: Color(0xFFF84D46),
+              textColor: Color(0xFFF84D46),
               onTap: () {
                 Navigator.pop(context);
                 // Handle logout
@@ -217,15 +200,10 @@ class _ModernDrawerState extends State<ModernDrawer>
     );
   }
 
-  Widget _buildAnimatedItem({
-    required Widget child,
-  }) {
+  Widget _buildAnimatedItem({required Widget child}) {
     return SlideTransition(
       position: _slideAnimation,
-      child: FadeTransition(
-        opacity: _fadeAnimation,
-        child: child,
-      ),
+      child: FadeTransition(opacity: _fadeAnimation, child: child),
     );
   }
 
@@ -234,18 +212,15 @@ class _ModernDrawerState extends State<ModernDrawer>
     required String title,
     required VoidCallback onTap,
     bool isSelected = false,
-    String? badge,
     Color? iconColor,
     Color? textColor,
   }) {
-    final Color effectiveIconColor =
-        iconColor ?? AppColors.primary;
+    final Color effectiveIconColor = iconColor ?? AppColors.primary;
 
-    final Color effectiveTextColor =
-        textColor ?? const Color(0xFF252525);
+    final Color effectiveTextColor = textColor ?? Color(0xFF252525);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: EdgeInsets.symmetric(vertical: 3),
       child: Material(
         color: isSelected
             ? AppColors.primary.withValues(alpha: 0.08)
@@ -255,10 +230,7 @@ class _ModernDrawerState extends State<ModernDrawer>
           onTap: onTap,
           borderRadius: BorderRadius.circular(16),
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 11,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 11),
             child: Row(
               children: [
                 _buildIconContainer(
@@ -267,8 +239,7 @@ class _ModernDrawerState extends State<ModernDrawer>
                   isSelected: isSelected,
                 ),
 
-                const SizedBox(width: 14),
-
+                SizedBox(width: 14),
                 Expanded(
                   child: Text(
                     title,
@@ -280,20 +251,6 @@ class _ModernDrawerState extends State<ModernDrawer>
                           : FontWeight.w500,
                     ),
                   ),
-                ),
-
-                if (badge != null) ...[
-                  const SizedBox(width: 8),
-                  _buildBadge(badge),
-                  const SizedBox(width: 6),
-                ],
-
-                Icon(
-                  Icons.chevron_right_rounded,
-                  color: isSelected
-                      ? AppColors.primary
-                      : const Color(0xFF9E9E9E),
-                  size: 22,
                 ),
               ],
             ),
@@ -312,41 +269,10 @@ class _ModernDrawerState extends State<ModernDrawer>
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: color.withValues(
-          alpha: isSelected ? 0.14 : 0.08,
-        ),
+        color: color.withValues(alpha: isSelected ? 0.14 : 0.08),
         borderRadius: BorderRadius.circular(13),
       ),
-      child: Icon(
-        icon,
-        color: color,
-        size: 21,
-      ),
-    );
-  }
-
-  Widget _buildBadge(String badge) {
-    return Container(
-      constraints: const BoxConstraints(
-        minWidth: 24,
-      ),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 7,
-        vertical: 4,
-      ),
-      decoration: BoxDecoration(
-        color: AppColors.primary,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Text(
-        badge,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-        ),
-      ),
+      child: Icon(icon, color: color, size: 21),
     );
   }
 }
