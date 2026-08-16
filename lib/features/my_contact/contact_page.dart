@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../app/theme/app_colors.dart';
-import '../../core/widgets/custom_search_bar.dart';
+import '../../core/constant/custom_drawer.dart';
+import '../../core/constant/custom_search_bar.dart';
+import 'widgets/user_list.dart';
 
 class MyContactPage extends StatefulWidget {
   const MyContactPage({super.key});
@@ -12,9 +14,11 @@ class MyContactPage extends StatefulWidget {
 class _MyContactPageState extends State<MyContactPage> {
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
     return Scaffold(
+      key: scaffoldKey,
+      drawer: ModernDrawer(),
       backgroundColor: AppColors.background,
-      drawer: Container(),
       //AppBar
       appBar: AppBar(
         title: Text("My Contacts", style: TextStyle(color: Colors.white)),
@@ -39,61 +43,8 @@ class _MyContactPageState extends State<MyContactPage> {
             //SearchBar
             CustomSearchBar(),
 
-            Expanded(
-              child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 5,
-                    ),
-
-                    child: Material(
-                      elevation: 3,
-                      shadowColor: Colors.black26,
-                      borderRadius: BorderRadius.circular(12),
-                      child: ListTile(
-                        contentPadding: const EdgeInsets.symmetric(
-                          horizontal: 16,
-                          vertical: 5,
-                        ),
-                        leading: CircleAvatar(
-                          radius: 22,
-                          backgroundColor: AppColors.primary,
-                          child: const Text(
-                            "AS",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        title: const Text(
-                          "Alice Smith",
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        subtitle: const Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "alice@example.com",
-                              style: TextStyle(fontSize: 11),
-                            ),
-                            Text("01711111111", style: TextStyle(fontSize: 11)),
-                          ],
-                        ),
-                        trailing: const Icon(Icons.chevron_right, size: 22),
-                        onTap: () {},
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+            //user list
+            UserList(),
           ],
         ),
       ),
