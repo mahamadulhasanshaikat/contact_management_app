@@ -17,12 +17,12 @@ class AppLegalInfo {
 
   static const String appName = 'Contact Management App';
   static const String appVersion = '1.0.0 (Build 1)';
-  static const String developerName = 'Mahamadul Hasan Shaikat';
+  static const String developerName = 'MHS Tech Labs';
   static const String copyrightYear = '2026';
   static const String supportEmail = 'support@yourdomain.com';
 
   static const String appDescription =
-      'A secure, lightweight, and modern contact management solution built with Flutter & SQLite.';
+      'A secure, lightweight, and modern contact management solution\nbuilt with Flutter and SQLite.';
 
   static const String mainAppLicense =
       '''

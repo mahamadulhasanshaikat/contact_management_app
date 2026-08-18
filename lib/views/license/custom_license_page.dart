@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../../app/theme/app_colors.dart';
 import '../../core/constants/app_legal_info.dart';
 
 class CustomLicensePage extends StatelessWidget {
   const CustomLicensePage({super.key});
+
+  void _copyEmail(BuildContext context) {
+    Clipboard.setData(const ClipboardData(text: AppLegalInfo.supportEmail));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Support email copied to clipboard'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,15 +95,88 @@ class CustomLicensePage extends StatelessWidget {
                       color: isDark ? Colors.white54 : AppColors.mutedText,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 12),
+
+                  // App Description
                   Text(
-                    '© ${AppLegalInfo.copyrightYear} ${AppLegalInfo.developerName}.\nAll Rights Reserved.',
+                    AppLegalInfo.appDescription,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 12,
-                      height: 1.4,
-                      color: isDark ? Colors.white70 : AppColors.mutedText,
+                      fontSize: 13,
+                      height: 1.45,
+                      color: isDark ? Colors.white70 : AppColors.text,
                     ),
+                  ),
+                  const SizedBox(height: 14),
+
+                  // Support Email Chip / Button
+                  InkWell(
+                    onTap: () => _copyEmail(context),
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary.withValues(
+                          alpha: isDark ? 0.18 : 0.08,
+                        ),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.primary.withValues(alpha: 0.25),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(
+                            Icons.email_outlined,
+                            size: 15,
+                            color: AppColors.primary,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            AppLegalInfo.supportEmail,
+                            style: const TextStyle(
+                              fontSize: 12.5,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                          const SizedBox(width: 4),
+                          const Icon(
+                            Icons.copy_rounded,
+                            size: 13,
+                            color: AppColors.primary,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 14),
+
+                  // Copyright Info
+                  Text.rich(
+                    TextSpan(
+                      text: '© ${AppLegalInfo.copyrightYear} ',
+                      style: TextStyle(
+                        fontSize: 11.5,
+                        height: 1.4,
+                        color: isDark ? Colors.white38 : AppColors.mutedText,
+                      ),
+                      children: [
+                        TextSpan(
+                          text: AppLegalInfo.developerName,
+                          style: TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        TextSpan(text: '. All Rights Reserved.'),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ],
               ),
