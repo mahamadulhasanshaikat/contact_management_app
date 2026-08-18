@@ -54,7 +54,7 @@ class _MyContactPageState extends State<MyContactPage> {
             onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.more_vert_outlined),
+            icon: Icon(Icons.more_vert_outlined),
             color: Colors.white,
             onPressed: () {},
           ),
