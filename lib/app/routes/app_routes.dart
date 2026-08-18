@@ -8,4 +8,5 @@ class AppRoutes {
   static const favorites = '/favorites';
   static const settings = '/settings';
   static const about = '/about';
+  static const licenses = '/licenses';
 }

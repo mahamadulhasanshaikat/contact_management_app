@@ -4,6 +4,7 @@ import '../../models/contact_model.dart';
 import '../../views/add_contact/add_contact_page.dart';
 import '../../views/edit_contact/edit_contact_page.dart';
 import '../../views/favorites/favorites_page.dart';
+import '../../views/license/custom_license_page.dart';
 import '../../views/my_contact/contact_page.dart';
 import '../../views/settings/settings_page.dart';
 import 'app_routes.dart';
@@ -45,6 +46,11 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.settings,
       builder: (context, state) => SettingsPage(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.licenses,
+      builder: (context, state) => CustomLicensePage(),
     ),
   ],
 );
