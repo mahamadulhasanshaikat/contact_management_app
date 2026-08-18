@@ -36,11 +36,10 @@ class _AddContactPageState extends State<AddContactPage> {
     final email = _emailController.text.trim();
     final address = _addressController.text.trim();
 
-    // বেসিক ভ্যালিডেশন
     if (name.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a name')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Please enter a name')));
       return;
     }
 
@@ -59,7 +58,6 @@ class _AddContactPageState extends State<AddContactPage> {
       isFavorite: 0,
     );
 
-    // ViewModel-এর মাধ্যমে SQLite ডেটাবেজে সেভ
     await ContactViewModel.instance.addContact(newContact);
 
     if (mounted) {
@@ -69,14 +67,17 @@ class _AddContactPageState extends State<AddContactPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           "Add Contact",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: AppColors.appbar,
+        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
+        elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           IconButton(
@@ -101,13 +102,17 @@ class _AddContactPageState extends State<AddContactPage> {
                     height: 100,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: AppColors.primary.withValues(alpha: 0.10),
+                      color: AppColors.primary.withValues(
+                        alpha: isDark ? 0.20 : 0.10,
+                      ),
                       border: Border.all(
-                        color: AppColors.primary.withValues(alpha: 0.25),
+                        color: AppColors.primary.withValues(
+                          alpha: isDark ? 0.40 : 0.25,
+                        ),
                         width: 2,
                       ),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.camera_alt,
                       color: AppColors.primary,
                       size: 32,

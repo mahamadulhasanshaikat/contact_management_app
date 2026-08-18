@@ -33,26 +33,31 @@ class _MyContactPageState extends State<MyContactPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
       key: _scaffoldKey,
-      drawer: ModernDrawer(),
-      backgroundColor: AppColors.background,
+      drawer: const ModernDrawer(),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "My Contacts",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: AppColors.appbar,
+        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
         iconTheme: const IconThemeData(color: Colors.white),
+        elevation: 0,
         actions: [
           IconButton(
-            icon: Icon(Icons.search_outlined),
+            icon: const Icon(Icons.search_outlined),
             color: Colors.white,
-            onPressed: () {},
-            //onPressed: () => context.push(AppRoutes.searchContact),
+            onPressed: () {
+              // AppBar এর সার্চ বাটনে ক্লিক করলে সার্চ স্ক্রিনে যাবে
+              context.push(AppRoutes.searchContact);
+            },
           ),
           IconButton(
-            icon: Icon(Icons.more_vert_outlined),
+            icon: const Icon(Icons.more_vert_outlined),
             color: Colors.white,
             onPressed: () {},
           ),

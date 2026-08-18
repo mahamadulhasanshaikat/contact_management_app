@@ -11,10 +11,10 @@ class UserList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     if (viewModel.isLoading) {
-      return const Expanded(
-        child: Center(child: CircularProgressIndicator()),
-      );
+      return const Expanded(child: Center(child: CircularProgressIndicator()));
     }
 
     final displayList = viewModel.searchQuery.isNotEmpty
@@ -27,13 +27,21 @@ class UserList extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(Icons.person_search_outlined, size: 70, color: Colors.grey.shade400),
+              Icon(
+                Icons.person_search_outlined,
+                size: 70,
+                color: isDark ? Colors.white38 : Colors.grey.shade400,
+              ),
               const SizedBox(height: 12),
               Text(
                 viewModel.searchQuery.isNotEmpty
                     ? 'No contacts found'
                     : 'No contacts yet',
-                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: isDark ? Colors.white70 : Colors.black54,
+                ),
               ),
             ],
           ),
@@ -49,47 +57,83 @@ class UserList extends StatelessWidget {
         itemBuilder: (context, index) {
           final contact = displayList[index];
           final initials = contact.name.trim().isNotEmpty
-              ? contact.name.trim().split(' ').map((e) => e.isNotEmpty ? e[0] : '').take(2).join().toUpperCase()
+              ? contact.name
+                    .trim()
+                    .split(' ')
+                    .map((e) => e.isNotEmpty ? e[0] : '')
+                    .take(2)
+                    .join()
+                    .toUpperCase()
               : 'U';
 
           return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
               borderRadius: BorderRadius.circular(14),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.03),
+                  color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
                   blurRadius: 6,
                   offset: const Offset(0, 2),
                 ),
               ],
             ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
-              leading: CircleAvatar(
-                radius: 22,
-                backgroundColor: AppColors.primary.withOpacity(0.9),
-                child: Text(
-                  initials,
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 14),
+            child: Material(
+              color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+              borderRadius: BorderRadius.circular(14),
+              clipBehavior: Clip.antiAlias,
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 4,
                 ),
+                leading: CircleAvatar(
+                  radius: 22,
+                  backgroundColor: AppColors.primary.withValues(alpha: 0.9),
+                  child: Text(
+                    initials,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  contact.name,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                    color: isDark ? Colors.white : Colors.black87,
+                  ),
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (contact.email.isNotEmpty)
+                      Text(
+                        contact.email,
+                        style: TextStyle(
+                          color: isDark ? Colors.white60 : Colors.grey.shade600,
+                          fontSize: 12,
+                        ),
+                      ),
+                    Text(
+                      contact.phone,
+                      style: TextStyle(
+                        color: isDark ? Colors.white70 : Colors.grey.shade700,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ],
+                ),
+                trailing: Icon(
+                  Icons.chevron_right,
+                  color: isDark ? Colors.white38 : Colors.grey,
+                ),
+                onTap: () {
+                  context.push(AppRoutes.contactDetails, extra: contact);
+                },
               ),
-              title: Text(
-                contact.name,
-                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if (contact.email.isNotEmpty)
-                    Text(contact.email, style: TextStyle(color: Colors.grey.shade600, fontSize: 12)),
-                  Text(contact.phone, style: TextStyle(color: Colors.grey.shade700, fontSize: 12)),
-                ],
-              ),
-              trailing: const Icon(Icons.chevron_right, color: Colors.grey),
-              onTap: () {
-                context.push(AppRoutes.contactDetails, extra: contact);
-              },
             ),
           );
         },

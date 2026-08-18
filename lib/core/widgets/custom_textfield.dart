@@ -23,53 +23,57 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 6),
       child: TextFormField(
         controller: controller,
         validator: validator,
         keyboardType: keyboardType,
         textInputAction: textInputAction,
         maxLines: maxLines,
+        style: TextStyle(
+          fontSize: 15,
+          color: isDark ? Colors.white : Colors.black87,
+        ),
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: const TextStyle(
+          hintStyle: TextStyle(
             fontSize: 14,
-            color: Colors.grey,
+            color: isDark ? Colors.white38 : Colors.grey,
           ),
-
           prefixIcon: Padding(
-            padding: EdgeInsets.only(
-              bottom: maxLines > 1 ? 35 : 0,
-            ),
-            child: Icon(
-              prefixIcon,
-              color: AppColors.primary,
-              size: 25,
-            ),
+            padding: EdgeInsets.only(bottom: maxLines > 1 ? 35 : 0),
+            child: Icon(prefixIcon, color: AppColors.primary, size: 24),
           ),
-
           filled: true,
-          fillColor: Colors.grey.shade100,
-
+          fillColor: isDark ? const Color(0xFF1E1E1E) : Colors.grey.shade100,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 14,
+          ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
             borderSide: BorderSide.none,
           ),
-
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(
-              color: Colors.grey,
+            borderSide: BorderSide(
+              color: isDark ? Colors.white12 : Colors.grey.shade300,
             ),
           ),
-
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(14),
-            borderSide: const BorderSide(
-              color: AppColors.primary,
-              width: 1.5,
-            ),
+            borderSide: const BorderSide(color: AppColors.primary, width: 1.5),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.redAccent, width: 1),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: const BorderSide(color: Colors.redAccent, width: 1.5),
           ),
         ),
       ),

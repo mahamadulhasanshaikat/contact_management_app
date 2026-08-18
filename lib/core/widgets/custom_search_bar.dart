@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+
 import '../../app/theme/app_colors.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -15,30 +17,49 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextFormField(
         controller: controller,
         onChanged: onChanged,
+        style: TextStyle(color: isDark ? Colors.white : Colors.black87),
         decoration: InputDecoration(
           hintText: 'Search contacts...',
-          hintStyle: const TextStyle(fontSize: 14, color: Colors.grey),
-          prefixIcon: const Icon(Icons.search, size: 22, color: Colors.grey),
+          hintStyle: TextStyle(
+            fontSize: 14,
+            color: isDark ? Colors.white54 : Colors.grey,
+          ),
+          prefixIcon: Icon(
+            Icons.search,
+            size: 22,
+            color: isDark ? Colors.white54 : Colors.grey,
+          ),
           suffixIcon: controller.text.isNotEmpty
               ? IconButton(
-                  icon: const Icon(Icons.clear, size: 20, color: Colors.grey),
+                  icon: Icon(
+                    Icons.clear,
+                    size: 20,
+                    color: isDark ? Colors.white54 : Colors.grey,
+                  ),
                   onPressed: onClear,
                 )
               : null,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(
+            vertical: 14,
+            horizontal: 16,
+          ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
-            borderSide: BorderSide(color: Colors.grey.shade300),
+            borderSide: BorderSide(
+              color: isDark ? Colors.white10 : Colors.grey.shade300,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),

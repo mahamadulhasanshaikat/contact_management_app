@@ -29,13 +29,17 @@ class Contact {
   factory Contact.fromMap(Map<String, dynamic> map) {
     return Contact(
       id: map['id'],
-      name: map['name'],
-      phone: map['phone'],
-      email: map['email'],
-      address: map['address'],
+      name: map['name'] ?? '',
+      phone: map['phone'] ?? '',
+      email: map['email'] ?? '',
+      address: map['address'] ?? '',
       isFavorite: map['isFavorite'] ?? 0,
     );
   }
+
+  // GoRouter সিরিয়ালাইজেশনের জন্য এই দুটি মেথড অত্যন্ত জরুরি
+  Map<String, dynamic> toJson() => toMap();
+  factory Contact.fromJson(Map<String, dynamic> json) => Contact.fromMap(json);
 
   Contact copyWith({
     int? id,

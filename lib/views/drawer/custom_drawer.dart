@@ -47,8 +47,32 @@ class _ModernDrawerState extends State<ModernDrawer>
     super.dispose();
   }
 
+  void _showAboutDialog(BuildContext context) {
+    showAboutDialog(
+      context: context,
+      applicationName: 'Contact Management App',
+      applicationVersion: '1.0.0',
+      applicationIcon: Container(
+        padding: const EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Icon(Icons.contacts, color: Colors.white, size: 30),
+      ),
+      children: const [
+        Text(
+          'Manage all your personal and professional contacts easily in one place with fast local SQLite storage.',
+          style: TextStyle(fontSize: 14),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Drawer(
       width: MediaQuery.sizeOf(context).width * 0.78,
       elevation: 0,
@@ -58,20 +82,15 @@ class _ModernDrawerState extends State<ModernDrawer>
         bottom: false,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: AppColors.appbar,
-            // gradient: LinearGradient(
-            //   colors: [AppColors.appbar, AppColors.appbar],
-            //   begin: Alignment.topLeft,
-            //   end: Alignment.bottomRight,
-            // ),
+            color: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
           ),
           child: Column(
             children: [
-              //header
+              // Header
               _buildHeader(),
 
-              //Items
-              Expanded(child: _buildMenuContainer()),
+              // Items
+              Expanded(child: _buildMenuContainer(isDark)),
             ],
           ),
         ),
@@ -84,7 +103,7 @@ class _ModernDrawerState extends State<ModernDrawer>
       height: 235,
       width: double.infinity,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(24, 40, 20, 24),
+        padding: const EdgeInsets.fromLTRB(24, 40, 20, 24),
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Align(
@@ -93,7 +112,7 @@ class _ModernDrawerState extends State<ModernDrawer>
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.only(left: 15),
                   child: Icon(
                     Icons.groups_2_outlined,
@@ -101,8 +120,8 @@ class _ModernDrawerState extends State<ModernDrawer>
                     size: 50,
                   ),
                 ),
-                SizedBox(height: 18),
-                Text(
+                const SizedBox(height: 18),
+                const Text(
                   'My Contacts',
                   style: TextStyle(
                     color: Colors.white,
@@ -111,7 +130,7 @@ class _ModernDrawerState extends State<ModernDrawer>
                     height: 1.2,
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Text(
                   'Manage your contacts easily',
                   style: TextStyle(
@@ -128,24 +147,25 @@ class _ModernDrawerState extends State<ModernDrawer>
     );
   }
 
-  Widget _buildMenuContainer() {
+  Widget _buildMenuContainer(bool isDark) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+        color: isDark ? const Color(0xFF181818) : Colors.white,
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
       ),
       child: ListView(
-        padding: EdgeInsets.fromLTRB(10, 18, 10, 20),
+        padding: const EdgeInsets.fromLTRB(10, 18, 10, 20),
         children: [
           _buildAnimatedItem(
             child: _buildDrawerItem(
               icon: Icons.group_outlined,
               title: 'All Contacts',
               isSelected: true,
+              isDark: isDark,
               onTap: () => Navigator.pop(context),
             ),
           ),
@@ -154,7 +174,11 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.star_border_rounded,
               title: 'Favourites',
-              onTap: () => Navigator.pop(context),
+              isDark: isDark,
+              onTap: () {
+                Navigator.pop(context);
+                context.push(AppRoutes.favorites);
+              },
             ),
           ),
 
@@ -162,22 +186,32 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.person_add_alt_1_outlined,
               title: 'Add Contact',
+              isDark: isDark,
               onTap: () {
+                Navigator.pop(context);
                 context.push(AppRoutes.addContact);
               },
             ),
           ),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child: Divider(height: 1, thickness: 1, color: Color(0xFFE5E5EA)),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: isDark ? Colors.white12 : const Color(0xFFE5E5EA),
+            ),
           ),
 
           _buildAnimatedItem(
             child: _buildDrawerItem(
               icon: Icons.help_outline_rounded,
               title: 'About App',
-              onTap: () => Navigator.pop(context),
+              isDark: isDark,
+              onTap: () {
+                Navigator.pop(context);
+                _showAboutDialog(context);
+              },
             ),
           ),
 
@@ -185,7 +219,11 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.settings_outlined,
               title: 'Settings',
-              onTap: () => Navigator.pop(context),
+              isDark: isDark,
+              onTap: () {
+                Navigator.pop(context);
+                context.push(AppRoutes.settings);
+              },
             ),
           ),
 
@@ -193,8 +231,9 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.logout_rounded,
               title: 'Logout',
-              iconColor: Color(0xFFF84D46),
-              textColor: Color(0xFFF84D46),
+              iconColor: const Color(0xFFF84D46),
+              textColor: const Color(0xFFF84D46),
+              isDark: isDark,
               onTap: () {
                 Navigator.pop(context);
                 // Handle logout
@@ -217,35 +256,36 @@ class _ModernDrawerState extends State<ModernDrawer>
     required IconData icon,
     required String title,
     required VoidCallback onTap,
+    required bool isDark,
     bool isSelected = false,
     Color? iconColor,
     Color? textColor,
   }) {
     final Color effectiveIconColor = iconColor ?? AppColors.primary;
-
-    final Color effectiveTextColor = textColor ?? Color(0xFF252525);
+    final Color effectiveTextColor =
+        textColor ?? (isDark ? Colors.white : const Color(0xFF252525));
 
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 3),
       child: Material(
         color: isSelected
-            ? AppColors.primary.withValues(alpha: 0.08)
+            ? AppColors.primary.withValues(alpha: isDark ? 0.18 : 0.08)
             : Colors.transparent,
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
           onTap: onTap,
           borderRadius: BorderRadius.circular(16),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 11),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 11),
             child: Row(
               children: [
                 _buildIconContainer(
                   icon: icon,
                   color: effectiveIconColor,
                   isSelected: isSelected,
+                  isDark: isDark,
                 ),
-
-                SizedBox(width: 14),
+                const SizedBox(width: 14),
                 Expanded(
                   child: Text(
                     title,
@@ -270,12 +310,15 @@ class _ModernDrawerState extends State<ModernDrawer>
     required IconData icon,
     required Color color,
     required bool isSelected,
+    required bool isDark,
   }) {
     return Container(
       width: 44,
       height: 44,
       decoration: BoxDecoration(
-        color: color.withValues(alpha: isSelected ? 0.14 : 0.08),
+        color: color.withValues(
+          alpha: isSelected ? (isDark ? 0.25 : 0.14) : (isDark ? 0.15 : 0.08),
+        ),
         borderRadius: BorderRadius.circular(13),
       ),
       child: Icon(icon, color: color, size: 21),
