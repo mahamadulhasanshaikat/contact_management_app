@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:contact_management_app/app/theme/app_colors.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../app/routes/app_routes.dart';
 
 class ModernDrawer extends StatefulWidget {
   const ModernDrawer({super.key});
@@ -55,11 +58,12 @@ class _ModernDrawerState extends State<ModernDrawer>
         bottom: false,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.appbar, Color(0xFFFF8A80)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            color: AppColors.appbar,
+            // gradient: LinearGradient(
+            //   colors: [AppColors.appbar, AppColors.appbar],
+            //   begin: Alignment.topLeft,
+            //   end: Alignment.bottomRight,
+            // ),
           ),
           child: Column(
             children: [
@@ -158,7 +162,9 @@ class _ModernDrawerState extends State<ModernDrawer>
             child: _buildDrawerItem(
               icon: Icons.person_add_alt_1_outlined,
               title: 'Add Contact',
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                context.push(AppRoutes.addContact);
+              },
             ),
           ),
 
