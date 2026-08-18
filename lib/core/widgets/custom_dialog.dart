@@ -22,6 +22,7 @@ class CustomDialog {
 
     return showDialog(
       context: context,
+      useRootNavigator: true,
       builder: (dialogCtx) => AlertDialog(
         backgroundColor: isDark ? AppColors.darkSurface : AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -72,7 +73,7 @@ class CustomDialog {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () => Navigator.pop(dialogCtx),
+                    onPressed: () => Navigator.of(dialogCtx, rootNavigator: true).pop(),
                     child: Text(
                       cancelText,
                       style: TextStyle(
@@ -92,7 +93,7 @@ class CustomDialog {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.pop(dialogCtx);
+                      Navigator.of(dialogCtx, rootNavigator: true).pop();
                       onConfirm();
                     },
                     child: Text(
@@ -115,6 +116,7 @@ class CustomDialog {
 
     showDialog(
       context: context,
+      useRootNavigator: true,
       builder: (dialogCtx) => AlertDialog(
         backgroundColor: isDark ? AppColors.darkSurface : AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -177,7 +179,7 @@ class CustomDialog {
                   ),
                 ),
                 onPressed: () {
-                  Navigator.pop(dialogCtx);
+                  Navigator.of(dialogCtx, rootNavigator: true).pop();
                   context.push(AppRoutes.licenses);
                 },
                 child: const Text(

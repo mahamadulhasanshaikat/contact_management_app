@@ -3,6 +3,7 @@ import 'package:contact_management_app/app/theme/app_colors.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/routes/app_routes.dart';
+import '../../core/widgets/custom_dialog.dart';
 
 class ModernDrawer extends StatefulWidget {
   const ModernDrawer({super.key});
@@ -45,28 +46,6 @@ class _ModernDrawerState extends State<ModernDrawer>
   void dispose() {
     _animationController.dispose();
     super.dispose();
-  }
-
-  void _showAboutDialog(BuildContext context) {
-    showAboutDialog(
-      context: context,
-      applicationName: 'Contact Management App',
-      applicationVersion: '1.0.0',
-      applicationIcon: Container(
-        padding: const EdgeInsets.all(8),
-        decoration: BoxDecoration(
-          color: AppColors.primary,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: const Icon(Icons.contacts, color: Colors.white, size: 30),
-      ),
-      children: const [
-        Text(
-          'Manage all your personal and professional contacts easily in one place with fast local SQLite storage.',
-          style: TextStyle(fontSize: 14),
-        ),
-      ],
-    );
   }
 
   @override
@@ -209,8 +188,18 @@ class _ModernDrawerState extends State<ModernDrawer>
               title: 'About App',
               isDark: isDark,
               onTap: () {
-                Navigator.pop(context);
-                _showAboutDialog(context);
+                // ড্রয়ারটি বন্ধ করা
+                Navigator.of(context).pop();
+
+                // ড্রয়ার বন্ধের অ্যানিমেশন শেষ হওয়া পর্যন্ত অপেক্ষা করে ডায়েলগ ওপেন করা
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  // রুট নেভিগেটরের কনটেক্সট ব্যবহার করে ডায়েলগ খোলা
+                  final rootContext = Navigator.of(
+                    context,
+                    rootNavigator: true,
+                  ).context;
+                  CustomDialog.showAppAboutDialog(rootContext);
+                });
               },
             ),
           ),

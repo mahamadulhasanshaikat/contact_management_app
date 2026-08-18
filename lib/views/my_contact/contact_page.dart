@@ -37,10 +37,10 @@ class _MyContactPageState extends State<MyContactPage> {
 
     return Scaffold(
       key: _scaffoldKey,
-      drawer: const ModernDrawer(),
+      drawer: ModernDrawer(),
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "My Contacts",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
@@ -51,10 +51,7 @@ class _MyContactPageState extends State<MyContactPage> {
           IconButton(
             icon: const Icon(Icons.search_outlined),
             color: Colors.white,
-            onPressed: () {
-              // AppBar এর সার্চ বাটনে ক্লিক করলে সার্চ স্ক্রিনে যাবে
-              context.push(AppRoutes.searchContact);
-            },
+            onPressed: () {},
           ),
           IconButton(
             icon: const Icon(Icons.more_vert_outlined),
