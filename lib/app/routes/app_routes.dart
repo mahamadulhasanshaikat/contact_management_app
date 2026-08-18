@@ -4,6 +4,8 @@ class AppRoutes {
   static const addContact = '/add-contact';
   static const contactDetails = '/contact-details';
   static const editContact = '/edit-contact';
+  static const searchContact = '/search';
+  static const favorites = '/favorites';
   static const settings = '/settings';
   static const about = '/about';
 }
