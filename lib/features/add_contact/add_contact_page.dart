@@ -1,8 +1,8 @@
 import 'package:contact_management_app/app/theme/app_colors.dart';
-import 'package:contact_management_app/core/constant/custom_button.dart';
+import 'package:contact_management_app/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/constant/custom_textfield.dart';
+import '../../core/widgets/custom_textfield.dart';
 
 class AddContactPage extends StatefulWidget {
   const AddContactPage({super.key});

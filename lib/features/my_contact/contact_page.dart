@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import '../../app/routes/app_routes.dart';
 import '../../app/theme/app_colors.dart';
 import '../drawer/custom_drawer.dart';
-import '../../core/constant/custom_search_bar.dart';
+import '../../core/widgets/custom_search_bar.dart';
 import 'widgets/user_list.dart';
 
 class MyContactPage extends StatefulWidget {
