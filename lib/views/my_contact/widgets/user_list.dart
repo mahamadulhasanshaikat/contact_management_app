@@ -32,7 +32,7 @@ class UserList extends StatelessWidget {
                 size: 70,
                 color: isDark ? Colors.white38 : Colors.grey.shade400,
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               Text(
                 viewModel.searchQuery.isNotEmpty
                     ? 'No contacts found'
@@ -51,7 +51,7 @@ class UserList extends StatelessWidget {
 
     return Expanded(
       child: ListView.separated(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         itemCount: displayList.length,
         separatorBuilder: (_, _) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
@@ -73,16 +73,16 @@ class UserList extends StatelessWidget {
                 BoxShadow(
                   color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
                   blurRadius: 6,
-                  offset: const Offset(0, 2),
+                  offset: Offset(0, 2),
                 ),
               ],
             ),
             child: Material(
-              color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+              color: isDark ? Color(0xFF1E1E1E) : Colors.white,
               borderRadius: BorderRadius.circular(14),
               clipBehavior: Clip.antiAlias,
               child: ListTile(
-                contentPadding: const EdgeInsets.symmetric(
+                contentPadding: EdgeInsets.symmetric(
                   horizontal: 14,
                   vertical: 4,
                 ),
@@ -91,7 +91,7 @@ class UserList extends StatelessWidget {
                   backgroundColor: AppColors.primary.withValues(alpha: 0.9),
                   child: Text(
                     initials,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                       fontSize: 14,

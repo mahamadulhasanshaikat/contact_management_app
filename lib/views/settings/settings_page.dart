@@ -16,7 +16,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Settings',
           style: TextStyle(
             color: Colors.white,
@@ -25,7 +25,7 @@ class SettingsPage extends StatelessWidget {
           ),
         ),
         backgroundColor: isDark ? AppColors.darkAppbar : AppColors.appbar,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: SafeArea(
@@ -33,7 +33,7 @@ class SettingsPage extends StatelessWidget {
           listenable: themeVM,
           builder: (context, _) {
             return ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               children: [
                 // Theme Settings Card
                 Container(
@@ -45,7 +45,7 @@ class SettingsPage extends StatelessWidget {
                           alpha: isDark ? 0.25 : 0.03,
                         ),
                         blurRadius: 8,
-                        offset: const Offset(0, 2),
+                        offset: Offset(0, 2),
                       ),
                     ],
                   ),
@@ -57,7 +57,7 @@ class SettingsPage extends StatelessWidget {
                       children: [
                         ListTile(
                           leading: Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primary.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(8),
@@ -116,12 +116,12 @@ class SettingsPage extends StatelessWidget {
                             ),
                           ),
                           secondary: Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primary.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.palette_outlined,
                               color: AppColors.primary,
                             ),
@@ -135,7 +135,7 @@ class SettingsPage extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: 20),
 
                 // App Information Card
                 Container(
@@ -147,7 +147,7 @@ class SettingsPage extends StatelessWidget {
                           alpha: isDark ? 0.25 : 0.03,
                         ),
                         blurRadius: 8,
-                        offset: const Offset(0, 2),
+                        offset: Offset(0, 2),
                       ),
                     ],
                   ),
@@ -159,12 +159,12 @@ class SettingsPage extends StatelessWidget {
                       children: [
                         ListTile(
                           leading: Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primary.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.info_outline,
                               color: AppColors.primary,
                             ),
@@ -177,7 +177,7 @@ class SettingsPage extends StatelessWidget {
                               color: titleTextColor,
                             ),
                           ),
-                          trailing: const Icon(
+                          trailing: Icon(
                             Icons.chevron_right,
                             color: Colors.grey,
                           ),
@@ -194,12 +194,12 @@ class SettingsPage extends StatelessWidget {
                         ),
                         ListTile(
                           leading: Container(
-                            padding: const EdgeInsets.all(8),
+                            padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
                               color: AppColors.primary.withValues(alpha: 0.1),
                               borderRadius: BorderRadius.circular(8),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               Icons.access_time_rounded,
                               color: AppColors.primary,
                             ),

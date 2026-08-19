@@ -44,12 +44,12 @@ class _MyContactPageState extends State<MyContactPage> {
           "My Contacts",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.search_outlined),
+            icon: Icon(Icons.search_outlined),
             color: Colors.white,
             onPressed: () {},
           ),
@@ -85,11 +85,7 @@ class _MyContactPageState extends State<MyContactPage> {
         backgroundColor: AppColors.primary,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 6,
-        child: const Icon(
-          Icons.person_add_alt_1,
-          color: Colors.white,
-          size: 25,
-        ),
+        child: Icon(Icons.person_add_alt_1, color: Colors.white, size: 25),
       ),
     );
   }

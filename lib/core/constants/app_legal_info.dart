@@ -22,7 +22,7 @@ class AppLegalInfo {
   static const String supportEmail = 'support@yourdomain.com';
 
   static const String appDescription =
-      'A secure, lightweight, and modern contact management solution\nbuilt with Flutter and SQLite.';
+      'A secure, lightweight, and modern contact management solution built with Flutter and SQLite.';
 
   static const String mainAppLicense =
       '''
