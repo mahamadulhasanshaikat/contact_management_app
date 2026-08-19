@@ -5,7 +5,6 @@ import '../models/contact_model.dart';
 class DBHelper {
   static final DBHelper instance = DBHelper._init();
   static Database? _database;
-
   DBHelper._init();
 
   Future<Database> get database async {
@@ -47,6 +46,7 @@ class DBHelper {
     return result.map((e) => Contact.fromMap(e)).toList();
   }
 
+  //update
   Future<int> updateContact(Contact contact) async {
     final db = await database;
     return await db.update(
@@ -57,6 +57,7 @@ class DBHelper {
     );
   }
 
+  //delete
   Future<int> deleteContact(int id) async {
     final db = await database;
     return await db.delete('contacts', where: 'id = ?', whereArgs: [id]);

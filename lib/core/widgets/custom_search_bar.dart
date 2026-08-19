@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import '../../app/theme/app_colors.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -20,9 +18,9 @@ class CustomSearchBar extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+        color: isDark ? Color(0xFF1E1E1E) : Colors.white,
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextFormField(
@@ -51,10 +49,7 @@ class CustomSearchBar extends StatelessWidget {
                 )
               : null,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(
-            vertical: 14,
-            horizontal: 16,
-          ),
+          contentPadding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(

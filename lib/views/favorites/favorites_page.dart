@@ -78,7 +78,7 @@ class FavoritesPage extends StatelessWidget {
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               itemCount: favoriteList.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 10),
+              separatorBuilder: (_, _) => const SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final contact = favoriteList[index];
                 final initials = contact.name.trim().isNotEmpty

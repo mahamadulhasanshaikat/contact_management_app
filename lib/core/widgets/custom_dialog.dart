@@ -6,8 +6,7 @@ import '../constants/app_legal_info.dart';
 
 class CustomDialog {
   CustomDialog._();
-
-  // ১. জেনেরিক কনফার্মেশন/অ্যাকশন ডায়ালগ (Delete, Logout ইত্যাদির জন্য)
+  //Dialog (Delete, Cancel)
   static Future<void> showConfirmationDialog({
     required BuildContext context,
     required String title,
@@ -26,22 +25,19 @@ class CustomDialog {
       builder: (dialogCtx) => AlertDialog(
         backgroundColor: isDark ? AppColors.darkSurface : AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 24,
-        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: iconColor.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
               child: Icon(icon, color: iconColor, size: 36),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             Text(
               title,
               style: TextStyle(
@@ -50,7 +46,7 @@ class CustomDialog {
                 color: isDark ? Colors.white : AppColors.text,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: 8),
             Text(
               message,
               textAlign: TextAlign.center,
@@ -59,13 +55,13 @@ class CustomDialog {
                 fontSize: 14,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       side: BorderSide(
                         color: isDark ? AppColors.darkBorder : AppColors.border,
                       ),
@@ -73,7 +69,8 @@ class CustomDialog {
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    onPressed: () => Navigator.of(dialogCtx, rootNavigator: true).pop(),
+                    onPressed: () =>
+                        Navigator.of(dialogCtx, rootNavigator: true).pop(),
                     child: Text(
                       cancelText,
                       style: TextStyle(
@@ -82,12 +79,12 @@ class CustomDialog {
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: iconColor,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -98,7 +95,7 @@ class CustomDialog {
                     },
                     child: Text(
                       confirmText,
-                      style: const TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
@@ -110,7 +107,7 @@ class CustomDialog {
     );
   }
 
-  // ২. কাস্টম প্রফেশনাল About App ডায়ালগ
+  // About App Dialog
   static void showAppAboutDialog(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
@@ -120,26 +117,23 @@ class CustomDialog {
       builder: (dialogCtx) => AlertDialog(
         backgroundColor: isDark ? AppColors.darkSurface : AppColors.surface,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 24,
-        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: AppColors.primary,
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.contacts_rounded,
                 color: Colors.white,
                 size: 36,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             Text(
               AppLegalInfo.appName,
               textAlign: TextAlign.center,
@@ -149,7 +143,7 @@ class CustomDialog {
                 color: isDark ? Colors.white : AppColors.text,
               ),
             ),
-            const SizedBox(height: 4),
+            SizedBox(height: 4),
             Text(
               'v${AppLegalInfo.appVersion}',
               style: TextStyle(
@@ -157,7 +151,7 @@ class CustomDialog {
                 color: isDark ? Colors.white54 : AppColors.mutedText,
               ),
             ),
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
             Text(
               AppLegalInfo.appDescription,
               textAlign: TextAlign.center,
@@ -167,13 +161,13 @@ class CustomDialog {
                 color: isDark ? Colors.white70 : AppColors.text,
               ),
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 12),
-                  side: const BorderSide(color: AppColors.primary),
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                  side: BorderSide(color: AppColors.primary),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -182,7 +176,7 @@ class CustomDialog {
                   Navigator.of(dialogCtx, rootNavigator: true).pop();
                   context.push(AppRoutes.licenses);
                 },
-                child: const Text(
+                child: Text(
                   'View Licenses & Legal',
                   style: TextStyle(
                     color: AppColors.primary,

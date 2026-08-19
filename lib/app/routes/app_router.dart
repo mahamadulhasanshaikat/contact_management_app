@@ -1,7 +1,7 @@
-import 'package:contact_management_app/views/contact_details/contact_details_page.dart';
 import 'package:go_router/go_router.dart';
 import '../../models/contact_model.dart';
 import '../../views/add_contact/add_contact_page.dart';
+import '../../views/contact_details/contact_details_page.dart';
 import '../../views/edit_contact/edit_contact_page.dart';
 import '../../views/favorites/favorites_page.dart';
 import '../../views/license/custom_license_page.dart';

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:contact_management_app/app/theme/app_colors.dart';
-import 'package:contact_management_app/core/widgets/custom_button.dart';
-import 'package:contact_management_app/core/widgets/custom_textfield.dart';
-import 'package:contact_management_app/models/contact_model.dart';
-import 'package:contact_management_app/viewmodels/contact_viewmodel.dart';
+
+import '../../app/theme/app_colors.dart';
+import '../../models/contact_model.dart';
+import '../../viewmodels/contact_viewmodel.dart';
 
 class AddContactPage extends StatefulWidget {
   const AddContactPage({super.key});
@@ -39,14 +38,14 @@ class _AddContactPageState extends State<AddContactPage> {
     if (name.isEmpty) {
       ScaffoldMessenger.of(
         context,
-      ).showSnackBar(const SnackBar(content: Text('Please enter a name')));
+      ).showSnackBar(SnackBar(content: Text('Please enter a name')));
       return;
     }
 
     if (phone.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Please enter a phone number')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please enter a phone number')));
       return;
     }
 
@@ -72,11 +71,11 @@ class _AddContactPageState extends State<AddContactPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Add Contact",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
+        backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         actions: [

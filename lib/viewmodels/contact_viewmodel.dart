@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../data/db_helper.dart';
+import '../database/db_helper.dart';
 import '../models/contact_model.dart';
 
 class ContactViewModel extends ChangeNotifier {
@@ -14,7 +14,8 @@ class ContactViewModel extends ChangeNotifier {
   bool _isLoading = false;
 
   List<Contact> get contacts => _contacts;
-  List<Contact> get favoriteContacts => _contacts.where((c) => c.isFavorite == 1).toList();
+  List<Contact> get favoriteContacts =>
+      _contacts.where((c) => c.isFavorite == 1).toList();
   List<Contact> get filteredContacts => _filteredContacts;
   String get searchQuery => _searchQuery;
   bool get isLoading => _isLoading;
@@ -41,7 +42,9 @@ class ContactViewModel extends ChangeNotifier {
 
   // Toggle Favorite
   Future<void> toggleFavorite(Contact contact) async {
-    final updated = contact.copyWith(isFavorite: contact.isFavorite == 1 ? 0 : 1);
+    final updated = contact.copyWith(
+      isFavorite: contact.isFavorite == 1 ? 0 : 1,
+    );
     await _dbHelper.updateContact(updated);
     await fetchContacts();
   }
@@ -59,10 +62,12 @@ class ContactViewModel extends ChangeNotifier {
       _filteredContacts = [];
     } else {
       _filteredContacts = _contacts
-          .where((c) =>
-              c.name.toLowerCase().contains(query.toLowerCase()) ||
-              c.phone.contains(query) ||
-              c.email.toLowerCase().contains(query.toLowerCase()))
+          .where(
+            (c) =>
+                c.name.toLowerCase().contains(query.toLowerCase()) ||
+                c.phone.contains(query) ||
+                c.email.toLowerCase().contains(query.toLowerCase()),
+          )
           .toList();
     }
     notifyListeners();

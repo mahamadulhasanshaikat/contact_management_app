@@ -37,7 +37,6 @@ class Contact {
     );
   }
 
-  // GoRouter সিরিয়ালাইজেশনের জন্য এই দুটি মেথড অত্যন্ত জরুরি
   Map<String, dynamic> toJson() => toMap();
   factory Contact.fromJson(Map<String, dynamic> json) => Contact.fromMap(json);
 
