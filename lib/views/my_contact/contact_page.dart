@@ -42,7 +42,11 @@ class _MyContactPageState extends State<MyContactPage> {
       appBar: AppBar(
         title: Text(
           "My Contacts",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
         iconTheme: IconThemeData(color: Colors.white),
