@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../app/theme/app_colors.dart';
+import '../../core/widgets/custom_button.dart';
+import '../../core/widgets/custom_textfield.dart';
 import '../../models/contact_model.dart';
 import '../../viewmodels/contact_viewmodel.dart';
 
@@ -77,10 +79,10 @@ class _AddContactPageState extends State<AddContactPage> {
         ),
         backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
-            icon: const Icon(Icons.check_circle),
+            icon: Icon(Icons.check_circle),
             iconSize: 32,
             color: Colors.white,
             onPressed: _handleSaveContact,
@@ -89,13 +91,13 @@ class _AddContactPageState extends State<AddContactPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Form(
             key: _formKey,
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 25, bottom: 20),
+                  padding: EdgeInsets.only(top: 25, bottom: 20),
                   child: Container(
                     width: 100,
                     height: 100,
@@ -111,7 +113,7 @@ class _AddContactPageState extends State<AddContactPage> {
                         width: 2,
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.camera_alt,
                       color: AppColors.primary,
                       size: 32,
@@ -119,6 +121,7 @@ class _AddContactPageState extends State<AddContactPage> {
                   ),
                 ),
 
+                //Nmae
                 CustomTextField(
                   controller: _nameController,
                   hintText: 'Enter your name',
@@ -127,7 +130,8 @@ class _AddContactPageState extends State<AddContactPage> {
                   textInputAction: TextInputAction.next,
                 ),
 
-                const SizedBox(height: 14),
+                SizedBox(height: 14),
+                //phone
                 CustomTextField(
                   controller: _phoneController,
                   hintText: 'Enter phone number',
@@ -136,7 +140,8 @@ class _AddContactPageState extends State<AddContactPage> {
                   textInputAction: TextInputAction.next,
                 ),
 
-                const SizedBox(height: 14),
+                SizedBox(height: 14),
+                //email
                 CustomTextField(
                   controller: _emailController,
                   hintText: 'Enter email address',
@@ -145,7 +150,8 @@ class _AddContactPageState extends State<AddContactPage> {
                   textInputAction: TextInputAction.next,
                 ),
 
-                const SizedBox(height: 14),
+                SizedBox(height: 14),
+                //address
                 CustomTextField(
                   controller: _addressController,
                   hintText: 'Enter address',
@@ -155,9 +161,10 @@ class _AddContactPageState extends State<AddContactPage> {
                   maxLines: 3,
                 ),
 
-                const SizedBox(height: 25),
+                SizedBox(height: 25),
+                //Button
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
+                  padding: EdgeInsets.only(bottom: 20),
                   child: CustomButton(
                     text: 'Save Contact',
                     icon: Icons.save_outlined,

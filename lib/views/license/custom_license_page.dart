@@ -7,9 +7,9 @@ class CustomLicensePage extends StatelessWidget {
   const CustomLicensePage({super.key});
 
   void _copyEmail(BuildContext context) {
-    Clipboard.setData(const ClipboardData(text: AppLegalInfo.supportEmail));
+    Clipboard.setData(ClipboardData(text: AppLegalInfo.supportEmail));
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
+      SnackBar(
         content: Text('Support email copied to clipboard'),
         duration: Duration(seconds: 2),
       ),
@@ -23,7 +23,7 @@ class CustomLicensePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Licenses & Legal',
           style: TextStyle(
             color: Colors.white,
@@ -32,16 +32,16 @@ class CustomLicensePage extends StatelessWidget {
           ),
         ),
         backgroundColor: isDark ? AppColors.darkAppbar : AppColors.appbar,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           children: [
             // Branding Card
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 24),
               decoration: BoxDecoration(
                 color: isDark ? AppColors.darkSurface : AppColors.surface,
                 borderRadius: BorderRadius.circular(16),
@@ -52,14 +52,14 @@ class CustomLicensePage extends StatelessWidget {
                   BoxShadow(
                     color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.03),
                     blurRadius: 10,
-                    offset: const Offset(0, 2),
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),
               child: Column(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(14),
+                    padding: EdgeInsets.all(14),
                     decoration: BoxDecoration(
                       color: AppColors.primary,
                       borderRadius: BorderRadius.circular(16),
@@ -67,17 +67,17 @@ class CustomLicensePage extends StatelessWidget {
                         BoxShadow(
                           color: AppColors.primary.withValues(alpha: 0.3),
                           blurRadius: 12,
-                          offset: const Offset(0, 4),
+                          offset: Offset(0, 4),
                         ),
                       ],
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.contacts_rounded,
                       color: Colors.white,
                       size: 38,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   Text(
                     AppLegalInfo.appName,
                     style: TextStyle(
@@ -86,7 +86,7 @@ class CustomLicensePage extends StatelessWidget {
                       color: isDark ? Colors.white : AppColors.text,
                     ),
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     'Version ${AppLegalInfo.appVersion}',
                     style: TextStyle(
@@ -95,7 +95,7 @@ class CustomLicensePage extends StatelessWidget {
                       color: isDark ? Colors.white54 : AppColors.mutedText,
                     ),
                   ),
-                  const SizedBox(height: 12),
+                  SizedBox(height: 12),
 
                   // App Description
                   Text(
@@ -107,14 +107,14 @@ class CustomLicensePage extends StatelessWidget {
                       color: isDark ? Colors.white70 : AppColors.text,
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14),
 
                   // Support Email Chip / Button
                   InkWell(
                     onTap: () => _copyEmail(context),
                     borderRadius: BorderRadius.circular(20),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
+                      padding: EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 6,
                       ),
@@ -130,22 +130,22 @@ class CustomLicensePage extends StatelessWidget {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(
+                          Icon(
                             Icons.email_outlined,
                             size: 15,
                             color: AppColors.primary,
                           ),
-                          const SizedBox(width: 6),
+                          SizedBox(width: 6),
                           Text(
                             AppLegalInfo.supportEmail,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 12.5,
                               fontWeight: FontWeight.w600,
                               color: AppColors.primary,
                             ),
                           ),
-                          const SizedBox(width: 4),
-                          const Icon(
+                          SizedBox(width: 4),
+                          Icon(
                             Icons.copy_rounded,
                             size: 13,
                             color: AppColors.primary,
@@ -154,7 +154,7 @@ class CustomLicensePage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14),
 
                   // Copyright Info
                   Text.rich(
@@ -182,23 +182,23 @@ class CustomLicensePage extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
-            // Section 1: Application License
+            // Application License
             _buildSectionHeader('APPLICATION LICENSE', isDark),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             _buildMainLicenseCard(isDark),
 
-            const SizedBox(height: 24),
+            SizedBox(height: 24),
 
-            // Section 2: Third-Party Dependencies
+            // Third-Party Dependencies
             _buildSectionHeader('THIRD-PARTY OPEN SOURCE LIBRARIES', isDark),
-            const SizedBox(height: 10),
+            SizedBox(height: 10),
             ...AppLegalInfo.thirdPartyLibraries.map(
               (lib) => _buildLibraryTile(lib, isDark),
             ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
           ],
         ),
       ),

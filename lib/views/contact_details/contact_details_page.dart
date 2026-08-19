@@ -5,6 +5,7 @@ import '../../app/theme/app_colors.dart';
 import '../../core/widgets/custom_dialog.dart';
 import '../../models/contact_model.dart';
 import '../../viewmodels/contact_viewmodel.dart';
+import 'widgets/contact_info.dart';
 
 class ContactDetailsPage extends StatelessWidget {
   final Contact contact;
@@ -37,7 +38,7 @@ class ContactDetailsPage extends StatelessWidget {
         return Scaffold(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           appBar: AppBar(
-            title: const Text(
+            title: Text(
               'Contact Details',
               style: TextStyle(
                 color: Colors.white,
@@ -47,7 +48,7 @@ class ContactDetailsPage extends StatelessWidget {
             ),
             backgroundColor: isDark ? AppColors.darkAppbar : AppColors.appbar,
             elevation: 0,
-            iconTheme: const IconThemeData(color: Colors.white),
+            iconTheme: IconThemeData(color: Colors.white),
             actions: [
               IconButton(
                 onPressed: () => vm.toggleFavorite(currentContact),
@@ -65,16 +66,18 @@ class ContactDetailsPage extends StatelessWidget {
                 onPressed: () {
                   context.push(AppRoutes.editContact, extra: currentContact);
                 },
-                icon: const Icon(Icons.edit_outlined, size: 24),
+                icon: Icon(Icons.edit_outlined, size: 24),
               ),
-              // এখানে CustomDialog ব্যবহার করা হয়েছে
+
+              //CustomDialog
               IconButton(
                 onPressed: () {
                   CustomDialog.showConfirmationDialog(
                     context: context,
                     title: 'Delete Contact',
-                    message:
-                        'Are you sure you want to delete\n${currentContact.name}?',
+                    message: 'Are you sure you want to delete',
+                    highlightedText: currentContact.name,
+                    highlightColor: AppColors.primary,
                     confirmText: 'Delete',
                     icon: Icons.delete_outline,
                     iconColor: AppColors.danger,
@@ -88,30 +91,31 @@ class ContactDetailsPage extends StatelessWidget {
                     },
                   );
                 },
-                icon: const Icon(Icons.delete_outline, size: 24),
+                icon: Icon(Icons.delete_outline, size: 24),
               ),
-              const SizedBox(width: 4),
+
+              SizedBox(width: 4),
             ],
           ),
           body: SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
-                  const SizedBox(height: 35),
+                  SizedBox(height: 35),
                   CircleAvatar(
                     radius: 45,
                     backgroundColor: AppColors.primary,
                     child: Text(
                       initials,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.white,
                         fontSize: 26,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 14),
+                  SizedBox(height: 14),
                   Text(
                     currentContact.name,
                     textAlign: TextAlign.center,
@@ -121,10 +125,10 @@ class ContactDetailsPage extends StatelessWidget {
                       color: isDark ? Colors.white : AppColors.text,
                     ),
                   ),
-                  const SizedBox(height: 30),
+                  SizedBox(height: 30),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                       color: isDark ? AppColors.darkSurface : AppColors.surface,
                       borderRadius: BorderRadius.circular(16),
@@ -134,13 +138,13 @@ class ContactDetailsPage extends StatelessWidget {
                             alpha: isDark ? 0.25 : 0.04,
                           ),
                           blurRadius: 10,
-                          offset: const Offset(0, 3),
+                          offset: Offset(0, 3),
                         ),
                       ],
                     ),
                     child: Column(
                       children: [
-                        _buildContactInfo(
+                        ContactInfoTile(
                           icon: Icons.phone_outlined,
                           value: currentContact.phone.isNotEmpty
                               ? currentContact.phone
@@ -155,7 +159,7 @@ class ContactDetailsPage extends StatelessWidget {
                               ? AppColors.darkBorder
                               : AppColors.border,
                         ),
-                        _buildContactInfo(
+                        ContactInfoTile(
                           icon: Icons.email_outlined,
                           value: currentContact.email.isNotEmpty
                               ? currentContact.email
@@ -170,7 +174,7 @@ class ContactDetailsPage extends StatelessWidget {
                               ? AppColors.darkBorder
                               : AppColors.border,
                         ),
-                        _buildContactInfo(
+                        ContactInfoTile(
                           icon: Icons.location_on_outlined,
                           value: currentContact.address.isNotEmpty
                               ? currentContact.address
@@ -181,53 +185,13 @@ class ContactDetailsPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  SizedBox(height: 20),
                 ],
               ),
             ),
           ),
         );
       },
-    );
-  }
-
-  Widget _buildContactInfo({
-    required IconData icon,
-    required String value,
-    required String label,
-    required bool isDark,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Icon(icon, color: AppColors.primary, size: 24),
-        const SizedBox(width: 14),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                value,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w600,
-                  color: isDark ? Colors.white : AppColors.text,
-                ),
-              ),
-              const SizedBox(height: 3),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 13,
-                  color: isDark ? Colors.white54 : AppColors.mutedText,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }

@@ -15,7 +15,7 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Favorites',
           style: TextStyle(
             color: Colors.white,
@@ -23,16 +23,16 @@ class FavoritesPage extends StatelessWidget {
             fontSize: 18,
           ),
         ),
-        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         actions: [
           IconButton(
-            icon: const Icon(Icons.search, color: Colors.white),
+            icon: Icon(Icons.search, color: Colors.white),
             onPressed: () => context.push(AppRoutes.searchContact),
           ),
           IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
+            icon: Icon(Icons.more_vert, color: Colors.white),
             onPressed: () {},
           ),
         ],
@@ -53,7 +53,7 @@ class FavoritesPage extends StatelessWidget {
                       size: 80,
                       color: isDark ? Colors.white38 : Colors.grey.shade400,
                     ),
-                    const SizedBox(height: 14),
+                    SizedBox(height: 14),
                     Text(
                       'No favorites yet',
                       style: TextStyle(
@@ -62,7 +62,7 @@ class FavoritesPage extends StatelessWidget {
                         color: isDark ? Colors.white : Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    SizedBox(height: 6),
                     Text(
                       'Tap the star icon on any contact to add here.',
                       style: TextStyle(
@@ -78,7 +78,7 @@ class FavoritesPage extends StatelessWidget {
             return ListView.separated(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
               itemCount: favoriteList.length,
-              separatorBuilder: (_, _) => const SizedBox(height: 10),
+              separatorBuilder: (_, _) => SizedBox(height: 10),
               itemBuilder: (context, index) {
                 final contact = favoriteList[index];
                 final initials = contact.name.trim().isNotEmpty
@@ -100,16 +100,16 @@ class FavoritesPage extends StatelessWidget {
                           alpha: isDark ? 0.25 : 0.03,
                         ),
                         blurRadius: 6,
-                        offset: const Offset(0, 2),
+                        offset: Offset(0, 2),
                       ),
                     ],
                   ),
                   child: Material(
-                    color: isDark ? const Color(0xFF1E1E1E) : Colors.white,
+                    color: isDark ? Color(0xFF1E1E1E) : Colors.white,
                     borderRadius: BorderRadius.circular(14),
                     clipBehavior: Clip.antiAlias,
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
+                      contentPadding: EdgeInsets.symmetric(
                         horizontal: 14,
                         vertical: 4,
                       ),
@@ -120,7 +120,7 @@ class FavoritesPage extends StatelessWidget {
                         ),
                         child: Text(
                           initials,
-                          style: const TextStyle(
+                          style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
@@ -143,11 +143,7 @@ class FavoritesPage extends StatelessWidget {
                         ),
                       ),
                       trailing: IconButton(
-                        icon: const Icon(
-                          Icons.star,
-                          color: Colors.amber,
-                          size: 24,
-                        ),
+                        icon: Icon(Icons.star, color: Colors.amber, size: 24),
                         onPressed: () => vm.toggleFavorite(contact),
                       ),
                       onTap: () {

@@ -66,7 +66,7 @@ class _EditContactPageState extends State<EditContactPage> {
       address: address,
     );
 
-    // ViewModel দিয়ে SQLite ডেটাবেজে আপডেট
+    // SQLite databse update with ViewModel
     await ContactViewModel.instance.updateContact(updatedContact);
 
     if (mounted) {
@@ -81,7 +81,7 @@ class _EditContactPageState extends State<EditContactPage> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'Edit Contact',
           style: TextStyle(
             color: Colors.white,
@@ -89,20 +89,20 @@ class _EditContactPageState extends State<EditContactPage> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        backgroundColor: isDark ? const Color(0xFF1E1E1E) : AppColors.appbar,
+        backgroundColor: isDark ? Color(0xFF1E1E1E) : AppColors.appbar,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Colors.white),
         actions: [
           IconButton(
             onPressed: _updateContact,
-            icon: const Icon(Icons.check_rounded, size: 28),
+            icon: Icon(Icons.check_rounded, size: 28),
           ),
-          const SizedBox(width: 5),
+          SizedBox(width: 5),
         ],
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: Column(
             children: [
               Container(
@@ -120,13 +120,13 @@ class _EditContactPageState extends State<EditContactPage> {
                     width: 2,
                   ),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.camera_alt_outlined,
                   color: AppColors.primary,
                   size: 36,
                 ),
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25),
               CustomTextField(
                 controller: nameController,
                 hintText: 'Name',
@@ -134,7 +134,7 @@ class _EditContactPageState extends State<EditContactPage> {
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: 14),
               CustomTextField(
                 controller: phoneController,
                 hintText: 'Phone Number',
@@ -142,7 +142,7 @@ class _EditContactPageState extends State<EditContactPage> {
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: 14),
               CustomTextField(
                 controller: emailController,
                 hintText: 'Email',
@@ -150,7 +150,7 @@ class _EditContactPageState extends State<EditContactPage> {
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
               ),
-              const SizedBox(height: 14),
+              SizedBox(height: 14),
               CustomTextField(
                 controller: addressController,
                 hintText: 'Address',
@@ -159,9 +159,9 @@ class _EditContactPageState extends State<EditContactPage> {
                 textInputAction: TextInputAction.done,
                 maxLines: 3,
               ),
-              const SizedBox(height: 25),
+              SizedBox(height: 25),
               Padding(
-                padding: const EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.only(bottom: 20),
                 child: CustomButton(
                   text: 'Update Contact',
                   icon: Icons.check_rounded,
